@@ -15,26 +15,22 @@ public class TinkoffBankTest extends BaseTest {
         WebDriverWait wait = new WebDriverWait(driverManager.instance(), 10, 2000);
 
         LOG.info("Проверка открытия сайта");
-        WebElement logoBank = driverManager.instance().findElement(By.xpath("//img[@alt='Tinkoff']"));
+        WebElement logoBank = driverManager.findXpath("//img[@alt='Tinkoff']");
         Assertions.assertTrue(logoBank.isDisplayed(), "Страница не загрузилась");
 
         LOG.info("Клик по вкладке \"Страхование\"");
-        WebElement insuranceSection = driverManager.instance().findElement(By.xpath("//a[contains(@href, '/insurance/?internal_source') and @data-qa-type='uikit/clickable']"));
+        WebElement insuranceSection = driverManager.findXpath("//a[contains(@href, '/insurance/?internal_source') and @data-qa-type='uikit/clickable']");
         insuranceSection.click();
 
         LOG.info("Проверка перехода по вкладке \"Страхование\"");
-
-        /*Можно выполнить проверку при помощи объекта wait*/
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@data-test]")));
-
-        WebElement headerInsuranceSection = driverManager.instance().findElement(By.xpath("//h2[@data-test]"));
+        WebElement headerInsuranceSection = driverManager.findXpath("//h1[@data-test]");
         Assertions.assertTrue(headerInsuranceSection.isDisplayed(), "Страница не загрузилась");
 
         LOG.info("Клик по ссылке \"Расчитать стоймость\" в \"Страхование для туристов\"");
         driverManager.clickElement("//a[contains(@href, 'travel/#form')]");
 
         LOG.info("Проверка перехода по ссылке \"Расчитать стоймость\"");
-        WebElement headerTravelInsurance = driverManager.instance().findElement(By.xpath("//h2[@data-test]"));
+        WebElement headerTravelInsurance = driverManager.findXpath("//h2[@data-test]");
         Assertions.assertEquals(headerTravelInsurance.getText(), "Оформите страховку для путешествий");
 
         LOG.info("Ввод в поле \"Страна поездки\"");
