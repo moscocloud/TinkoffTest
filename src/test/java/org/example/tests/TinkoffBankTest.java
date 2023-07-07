@@ -8,9 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TinkoffBankTest extends BaseTest {
-
-
-    @Test()
+    @Test
     public void checkInsurance() {
         WebDriverWait wait = new WebDriverWait(driverManager.instance(), 10, 2000);
 
@@ -57,11 +55,7 @@ public class TinkoffBankTest extends BaseTest {
 
         LOG.info("Нажатие на кнопку \"К точному расчету\"");
         driverManager.clickElement("//button[@name='goForward']");
-
         System.out.println("Пока всё");
-
     }
-
-
 }
 
