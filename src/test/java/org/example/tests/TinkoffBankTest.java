@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class TinkoffBankTest extends BaseTest {
 
 
-    @Test
+    @Test()
     public void checkInsurance() {
         WebDriverWait wait = new WebDriverWait(driverManager.instance(), 10, 2000);
 
@@ -33,8 +33,8 @@ public class TinkoffBankTest extends BaseTest {
         WebElement headerTravelInsurance = driverManager.findXpath("//h2[@data-test]");
         Assertions.assertEquals(headerTravelInsurance.getText(), "Оформите страховку для путешествий");
 
-        LOG.info("Ввод в поле \"Страна поездки\"");
         String country = "Швеция";
+        LOG.info("Ввод в поле \"Страна поездки\" значение - " + country);
         driverManager.inputField("//input[@name='vzr_region']", country);
 
         LOG.info("Подтверждение выбора страны поездки");
@@ -45,16 +45,15 @@ public class TinkoffBankTest extends BaseTest {
         driverManager.clickElement("//div[text()='Выберите параметры страховки']");
 
         LOG.info("Ввод в поле \"Дата путешествия\"");
+        String partXpathStart = "//input[@name='vzr_calendar-start-%s']";
+        String partXpathEnd = "//input[@name='vzr_calendar-end-%s']";
 
-        String partXpathStart = "//input[@name='vzr_calendar-start-";
-        String partXpathEnd = "//input[@name='vzr_calendar-end-";
-
-        driverManager.inputField(partXpathStart + "day']", "29");
-        driverManager.inputField(partXpathStart + "month']", "06");
-        driverManager.inputField(partXpathStart + "year']", "2023");
-        driverManager.inputField(partXpathEnd + "day']", "29");
-        driverManager.inputField(partXpathEnd + "month']", "08");
-        driverManager.inputField(partXpathEnd + "year']", "2023");
+        driverManager.inputField(String.format(partXpathStart, "day"), "29");
+        driverManager.inputField(String.format(partXpathStart, "month"), "06");
+        driverManager.inputField(String.format(partXpathStart, "year"), "2023");
+        driverManager.inputField(String.format(partXpathEnd, "day"), "29");
+        driverManager.inputField(String.format(partXpathEnd, "month"), "08");
+        driverManager.inputField(String.format(partXpathEnd, "year"), "2023");
 
         LOG.info("Нажатие на кнопку \"К точному расчету\"");
         driverManager.clickElement("//button[@name='goForward']");
