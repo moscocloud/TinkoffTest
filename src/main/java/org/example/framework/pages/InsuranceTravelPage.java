@@ -1,22 +1,30 @@
 package org.example.framework.pages;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class InsuranceTravelPage {
-
+public class InsuranceTravelPage extends BasePage {
     @FindBy(xpath = "//h1[@data-test]")
     private WebElement headerInsuranceSection;
     @FindBy(xpath = "//a[contains(@href, 'travel/#form')]")
     private WebElement calcCount;
 
-
-    public void checkOpenPage(){
-        Assertions.assertTrue(headerInsuranceSection.isDisplayed(), "Страница не загрузилась");
+    /**
+     * Метод проверяет открытие страницы страхования.
+     *
+     * @return - this
+     */
+    public InsuranceTravelPage checkOpenInsuranceSection() {
+        checkOpenWithText("Страховые продукты Тинькофф", headerInsuranceSection);
+        return this;
     }
 
-    public void clickCalculatedCount() {
+    /**
+     * @return
+     */
+    public InsuranceTravelForm clickCalculatedCount() {
+        LOGGER.info("Клик по ссылке \"Расчитать стоймость\" в \"Страхование для туристов\"");
         calcCount.click();
+        return pageManager.getPage(InsuranceTravelForm.class);
     }
 }
