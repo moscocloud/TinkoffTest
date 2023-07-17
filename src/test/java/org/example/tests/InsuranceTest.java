@@ -7,21 +7,21 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
 public class InsuranceTest extends BaseTests {
+
     @Test
     @Timeout(20)
     @DisplayName("Check insurance section")
     public void checkInsurance() {
 
         pageManager.getPage(StartPage.class)
-                .logoIsDisplayed()
+                .checkLogoIsDisplayed()
                 .selectBaseMenuByText("Страхование")
                 .checkOpenInsuranceSection()
                 .clickCalculatedCount()
                 .checkOpenFormInsuranceTravel()
                 .inputFieldCountry("Швеция")
-                .inputFieldDate("23", "07", "2023", "26", "07", "2023")
-                .clickButtonCalc()
-                .waitting();
+                .inputFieldDate("23", "07", "2023", "26", "09", "2023")
+                .clickButtonCalculated();
 
 
     }

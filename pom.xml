@@ -22,11 +22,15 @@
 
         <!-- Dependencies version-->
         <selenium-java.version>3.141.59</selenium-java.version>
-        <junit-jupiter-api.version>5.8.2</junit-jupiter-api.version>
+        <junit-jupiter-api.version>5.9.2</junit-jupiter-api.version>
         <junit-platform-launcher.version>1.8.2</junit-platform-launcher.version>
         <webdrivermanager.version>5.3.0</webdrivermanager.version>
         <junit.version>4.13</junit.version>
         <aspectj.version>1.9.7</aspectj.version>
+        <slf4j-api.version>2.0.7</slf4j-api.version>
+        <allure-junit5.version>2.13.5</allure-junit5.version>
+        <allure-maven.version>2.10.0</allure-maven.version>
+        <allure-java-commons.version>2.13.6</allure-java-commons.version>
     </properties>
 
 
@@ -44,7 +48,7 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit-jupiter-api.version}</version>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
@@ -55,12 +59,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager.version}</version>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
@@ -69,26 +67,34 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.9.2</version>
-            <scope>compile</scope>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>2.0.7</version>
+            <version>${slf4j-api.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.4.5</version>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>${allure-junit5.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-java-commons</artifactId>
+            <version>${allure-java-commons.version}</version>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>
@@ -128,7 +134,7 @@
                     <properties>
                         <property>
                             <name>listener</name>
-                            <value>io.qameta.allure.junit5.AllureJunit5</value>
+                            <value>framework.utils.MyAllureListener</value>
                         </property>
                     </properties>
                 </configuration>
@@ -147,16 +153,16 @@
                 <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.12.0</version>
+                <version>${allure-maven.version}</version>
                 <configuration>
-                    <reportVersion>2.12.0</reportVersion>
+                    <reportVersion>${allure-maven.version}</reportVersion>
                     <resultsDirectory>${project.build.directory}/reports/allure-results</resultsDirectory>
                     <reportDirectory>${project.build.directory}/reports/allure-reports</reportDirectory>
                 </configuration>
                 <executions>
                     <execution>
                         <id>allure-plugin</id>
-                        <phase>package</phase>
+                        <phase>install</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>

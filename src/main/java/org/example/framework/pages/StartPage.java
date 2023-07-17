@@ -1,5 +1,7 @@
 package org.example.framework.pages;
 
+
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,21 +16,27 @@ public class StartPage extends BasePage {
     @FindBy(xpath = "//div[@data-test='panel slides']/ul/li")
     private List<WebElement> baseMenu;
 
+
     /**
-     * Проверка логотипа на отображение
+     * Открытие сайта Тинькофф
+     *
+     * @return this - т.е. BasePage
      */
-    public StartPage logoIsDisplayed() {
+    @Step("Открытие сайта Тинькофф")
+    public StartPage checkLogoIsDisplayed() {
         LOGGER.info("Проверка открытия сайта");
         logo.isDisplayed();
         return this;
     }
 
+
     /**
-     * Клик по базовому меню - меню выбирается по тексту переданному на вход
+     * Нажатие на кнопку "name menu"
      *
-     * @param nameMenu Текст переданный пользователеми
-     * @return - InsuranceTravelPage - следующая страница
+     * @param nameMenu - раздел
+     * @return InsuranceTravelPage.class
      */
+    @Step("Нажатие по кнопке \"{nameMenu}\"")
     public InsuranceTravelPage selectBaseMenuByText(String nameMenu) {
 
         LOGGER.info(String.format("Клик по вкладке \"%s\"", nameMenu));

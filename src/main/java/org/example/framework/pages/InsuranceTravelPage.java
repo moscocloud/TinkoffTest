@@ -1,5 +1,7 @@
 package org.example.framework.pages;
 
+
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -9,19 +11,24 @@ public class InsuranceTravelPage extends BasePage {
     @FindBy(xpath = "//a[contains(@href, 'travel/#form')]")
     private WebElement calcCount;
 
+
     /**
-     * Метод проверяет открытие страницы страхования.
+     * Открытие страницы страхование
      *
-     * @return - this
+     * @return InsuranceTravelPage - т.е. this
      */
+    @Step("Открытие страницы \"Страхование\"")
     public InsuranceTravelPage checkOpenInsuranceSection() {
         checkOpenWithText("Страховые продукты Тинькофф", headerInsuranceSection);
         return this;
     }
 
     /**
-     * @return
+     * Нажатие по кнопке расчитать стоймость
+     *
+     * @return InsuranceTravelForm.class
      */
+    @Step("Нажатие по кнопке \"Расчитать стоймость\" в блоке \"Страхование для туристов\"")
     public InsuranceTravelForm clickCalculatedCount() {
         LOGGER.info("Клик по ссылке \"Расчитать стоймость\" в \"Страхование для туристов\"");
         calcCount.click();
