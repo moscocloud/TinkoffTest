@@ -27,7 +27,7 @@
         <webdrivermanager.version>5.3.0</webdrivermanager.version>
         <junit.version>4.13</junit.version>
         <aspectj.version>1.9.7</aspectj.version>
-        <slf4j-api.version>2.0.7</slf4j-api.version>
+        <slf4j-api.version>2.0.5</slf4j-api.version>
         <allure-junit5.version>2.13.5</allure-junit5.version>
         <allure-maven.version>2.10.0</allure-maven.version>
         <allure-java-commons.version>2.13.6</allure-java-commons.version>
@@ -68,13 +68,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-api.version}</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
@@ -87,7 +80,7 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit5</artifactId>
             <version>${allure-junit5.version}</version>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -95,6 +88,13 @@
             <artifactId>allure-java-commons</artifactId>
             <version>${allure-java-commons.version}</version>
             <scope>compile</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api.version}</version>
         </dependency>
 
     </dependencies>
@@ -154,11 +154,13 @@
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>${allure-maven.version}</version>
+
                 <configuration>
                     <reportVersion>${allure-maven.version}</reportVersion>
                     <resultsDirectory>${project.build.directory}/reports/allure-results</resultsDirectory>
                     <reportDirectory>${project.build.directory}/reports/allure-reports</reportDirectory>
                 </configuration>
+
                 <executions>
                     <execution>
                         <id>allure-plugin</id>

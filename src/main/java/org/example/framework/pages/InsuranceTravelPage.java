@@ -19,6 +19,7 @@ public class InsuranceTravelPage extends BasePage {
      */
     @Step("Открытие страницы \"Страхование\"")
     public InsuranceTravelPage checkOpenInsuranceSection() {
+        LOGGER.info("Проверка открытия страницы");
         checkOpenWithText("Страховые продукты Тинькофф", headerInsuranceSection);
         return this;
     }

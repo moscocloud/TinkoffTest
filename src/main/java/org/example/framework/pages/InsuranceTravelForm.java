@@ -1,6 +1,7 @@
 package org.example.framework.pages;
 
 import io.qameta.allure.Step;
+import org.apache.commons.lang3.ArrayUtils;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -49,23 +50,21 @@ public class InsuranceTravelForm extends BasePage {
     /**
      * Ввод даты начала и конца поездки
      *
-     * @param dayStart   День начала поездки
-     * @param mountStart Месяц начала поездки
-     * @param yearStart  Год начала поездки
-     * @param dayEnd     День окончания поездки
-     * @param mountEnd   Месяц окончания поездки
-     * @param yearEnd    Год окончания поездки
      * @return this
+     * @dateStart Дата начала
+     * @dateEnd Дата конца
      */
-    @Step("Ввод даты начала ({dayStart}.{mountStart}.{yearStart})" +
-            " и окончания ({dayEnd}.{mountEnd}.{yearEnd}) поездки")
-    public InsuranceTravelForm inputFieldDate(String dayStart, String mountStart, String yearStart, String dayEnd, String mountEnd, String yearEnd) {
-
+    @Step("Ввод даты начала ({dateStart})" +
+            " и окончания ({dateEnd}) поездки")
+    public InsuranceTravelForm inputFieldDate(String dateStart, String dateEnd) {
         LOGGER.info("Ввод даты начала и конца поездки");
 
-        String[] dates = {dayStart, mountStart, yearStart, dayEnd, mountEnd, yearEnd};
-        WebElement[] fieldDates = fieldDate.toArray(WebElement[]::new);
+        String[] dates = ArrayUtils.addAll(
+                dateStart.split("\\."),
+                dateEnd.split("\\.")
+        );
 
+        WebElement[] fieldDates = fieldDate.toArray(WebElement[]::new);
         for (int i = 0; i < fieldDates.length; i++) {
             fieldDates[i].sendKeys(dates[i]);
         }
@@ -78,9 +77,9 @@ public class InsuranceTravelForm extends BasePage {
      * @return this
      */
     @Step("Нажатие по кнопке \"К точному расчету\"")
-    public InsuranceTravelForm clickButtonCalculated() {
+    public InsuranceUsersForm clickButtonCalculated() {
         LOGGER.info("Клик по кнопке\"К точному расчету\"");
         buttonCalc.click();
-        return this;
+        return pageManager.getPage(InsuranceUsersForm.class);
     }
 }

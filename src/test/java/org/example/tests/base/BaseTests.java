@@ -7,8 +7,11 @@ import managers.TestPropManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
+import utils.MyAllureListener;
 import utils.PropsConst;
 
+@ExtendWith(MyAllureListener.class)
 public class BaseTests {
 
     private DriverManager driverManager = DriverManager.getInstance();
@@ -19,6 +22,7 @@ public class BaseTests {
     public static void beforeClass() {
         InitManager.initFramework();
     }
+
     @BeforeEach
     public void before() {
         driverManager.getDriver().get(propManager.getProperty(PropsConst.BASE_URL));
@@ -26,6 +30,6 @@ public class BaseTests {
 
     @AfterEach
     public void after() {
-    InitManager.quitFramework();
+        InitManager.quitFramework();
     }
 }
