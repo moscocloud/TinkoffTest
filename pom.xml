@@ -31,6 +31,8 @@
         <allure-junit5.version>2.13.5</allure-junit5.version>
         <allure-maven.version>2.10.0</allure-maven.version>
         <allure-java-commons.version>2.13.6</allure-java-commons.version>
+        <rest-assured.version>4.3.2</rest-assured.version>
+        <icu4j.version>72.1</icu4j.version>
     </properties>
 
 
@@ -96,6 +98,19 @@
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j-api.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ibm.icu</groupId>
+            <artifactId>icu4j</artifactId>
+            <version>${icu4j.version}</version>
+        </dependency>
+
 
     </dependencies>
     <build>
