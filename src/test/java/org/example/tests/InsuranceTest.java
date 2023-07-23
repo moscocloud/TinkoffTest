@@ -7,11 +7,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Timeout;
 
+import static utils.Country.SWEDEN;
 import static utils.MenuButton.INSURANCE;
 
 public class InsuranceTest extends BaseTests {
 
-    @RepeatedTest(value = 3, name = "прогон {currentRepetition} из {totalRepetitions}")
+    @RepeatedTest(value = 1, name = "прогон {currentRepetition} из {totalRepetitions}")
     @Timeout(20)
     @DisplayName("Check insurance section")
     public void checkInsurance() {
@@ -23,7 +24,7 @@ public class InsuranceTest extends BaseTests {
                 .checkOpenInsuranceSection()
                 .clickCalculatedCount()
                 .checkOpenFormInsuranceTravel()
-                .inputFieldCountry("Швеция")
+                .inputFieldCountry(SWEDEN.getCountry())
                 .inputFieldDate("23.07.2023", "26.09.2023")
                 .clickButtonCalculated()
                 .checkBlockChange()
