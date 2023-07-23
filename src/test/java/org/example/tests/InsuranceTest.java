@@ -4,14 +4,14 @@ import data.person.DataPerson;
 import org.example.framework.pages.StartPage;
 import org.example.tests.base.BaseTests;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Timeout;
 
 import static utils.MenuButton.INSURANCE;
 
 public class InsuranceTest extends BaseTests {
 
-    @Test
+    @RepeatedTest(value = 3, name = "прогон {currentRepetition} из {totalRepetitions}")
     @Timeout(20)
     @DisplayName("Check insurance section")
     public void checkInsurance() {

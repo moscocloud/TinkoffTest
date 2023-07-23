@@ -31,5 +31,6 @@ public class BaseTests {
     @AfterEach
     public void after() {
         InitManager.quitFramework();
+        pageManager.clearPages();
     }
 }
